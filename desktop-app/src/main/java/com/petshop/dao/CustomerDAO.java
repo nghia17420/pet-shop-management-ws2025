@@ -7,28 +7,53 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDAO {
-    public void addCustomer(Customer cust) {
-        String sql = "INSERT INTO Customers (name, email, phone) VALUES (?, ?, ?)";
+    public void add(Customer customer) throws SQLException {
+        String sql = "INSERT INTO customers (name, email, phone) VALUES (?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, cust.getName());
-            stmt.setString(2, cust.getEmail());
-            stmt.setString(3, cust.getPhone());
+            stmt.setString(1, customer.getName());
+            stmt.setString(2, customer.getEmail());
+            stmt.setString(3, customer.getPhone());
             stmt.executeUpdate();
-        } catch (SQLException e) { e.printStackTrace(); }
+        }
     }
 
-    public List<Customer> getAllCustomers() {
+    public List<Customer> getAll() throws SQLException {
         List<Customer> list = new ArrayList<>();
-        String sql = "SELECT * FROM Customers";
+        String sql = "SELECT * FROM customers";
         try (Connection conn = DBConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
-                list.add(new Customer(rs.getInt("id"), rs.getString("name"),
-                        rs.getString("email"), rs.getString("phone")));
+                list.add(new Customer(
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("email"),
+                    rs.getString("phone")
+                ));
             }
-        } catch (SQLException e) { e.printStackTrace(); }
+        }
         return list;
+    }
+    
+    public void update(Customer customer) throws SQLException {
+        String sql = "UPDATE customers SET name=?, email=?, phone=? WHERE id=?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, customer.getName());
+            stmt.setString(2, customer.getEmail());
+            stmt.setString(3, customer.getPhone());
+            stmt.setInt(4, customer.getId());
+            stmt.executeUpdate();
+        }
+    }
+
+    public void delete(int id) throws SQLException {
+        String sql = "DELETE FROM customers WHERE id=?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        }
     }
 }
