@@ -24,7 +24,7 @@ public class ViewBillsOrderPlacedDetails extends javax.swing.JFrame {
     
     public String userPhone;
     
-     public ViewBillsOrderPlacedDetails() {
+    public ViewBillsOrderPlacedDetails() {
         initComponents();
     }
      

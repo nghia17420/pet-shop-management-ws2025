@@ -10,8 +10,6 @@ import javax.swing.table.TableModel;
 
 public class manageCategory extends javax.swing.JFrame {
     
-    public String email;
-    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(manageCategory.class.getName());
 
     public manageCategory() {

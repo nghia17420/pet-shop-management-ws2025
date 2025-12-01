@@ -1,6 +1,5 @@
 package com.nghiaduy.petshop.dao;
 
-import com.mysql.cj.protocol.Resultset;
 import com.nghiaduy.petshop.model.categories;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;

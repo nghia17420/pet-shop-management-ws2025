@@ -35,7 +35,7 @@ public class VerifyUsers extends javax.swing.JFrame {
         while(itr.hasNext()){
             user userObj = itr.next();
             if(!userObj.getPhone().equals("0799755429")) {
-                dtm.addRow(new Object[] {userObj.getId(),userObj.getFullName(),userObj.getEmail(),userObj.getPhone(),userObj.getStatus()});
+                dtm.addRow(new Object[] {userObj.getId(),userObj.getFullName(),userObj.getPhone(),userObj.getStatus()});
             }
             
         }
@@ -151,15 +151,16 @@ public class VerifyUsers extends javax.swing.JFrame {
         // TODO add your handling code here:
         int index = jTable1.getSelectedRow();
         TableModel model = jTable1.getModel();
-        String phone = model.getValueAt(index,3).toString();
-        String status = model.getValueAt(index, 5).toString();
+        String name = model.getValueAt(index,1).toString();
+        String phone = model.getValueAt(index,2).toString();
+        String status = model.getValueAt(index,3).toString();
         if(status.equals("true")) {
             status = "false";
         }
         else {
             status = "true";
         }
-        int a = JOptionPane.showConfirmDialog(null, "Do you want to change Status of '"+phone+"'","Select", JOptionPane.YES_NO_OPTION);
+        int a = JOptionPane.showConfirmDialog(null, "Do you want to change Status of '"+name+"'","Select", JOptionPane.YES_NO_OPTION);
         if (a==0) {
             userDAO.changeStatus(phone, status);
             setVisible(false);

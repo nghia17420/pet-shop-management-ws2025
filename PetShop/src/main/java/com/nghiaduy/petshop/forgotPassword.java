@@ -1,17 +1,13 @@
 
 package com.nghiaduy.petshop;
 
-import com.nghiaduy.petshop.model.user;
 import com.nghiaduy.petshop.dao.userDAO;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 /**
  *
  * @author nghia
  */
 public class forgotPassword extends javax.swing.JFrame {
     
-    //public String emailPattern = "^[a-zA-Z0-9]+[@]+[a-zA-Z0-9]+[.]+[a-zA-Z0-9]+$";
     public String phonePattern = "^[0-9]*$";
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(forgotPassword.class.getName());
